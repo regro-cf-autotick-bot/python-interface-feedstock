@@ -1,7 +1,5 @@
 {% set name = "python-interface" %}
-{% set version = "1.6.0" %}
-{% set hash_type = "sha256" %}
-{% set hash_value = "b26a1c7fef45d32d473c9047b07618c66c66e2351f1ff6f71136bccf77f6c123" %}
+{% set version = "1.6.1" %}
 
 package:
   name: {{ name|lower }}
@@ -9,12 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  '{{ hash_type }}': '{{ hash_value }}'
+  sha256: 10e710f7e38826db0e9b5719e6c4260f68376c1d0fd9a1f9800708644bc63828
 
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
