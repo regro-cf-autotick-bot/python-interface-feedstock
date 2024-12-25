@@ -1,27 +1,25 @@
 {% set name = "python-interface" %}
 {% set version = "1.6.0" %}
-{% set hash_type = "sha256" %}
-{% set hash_value = "b26a1c7fef45d32d473c9047b07618c66c66e2351f1ff6f71136bccf77f6c123" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  '{{ hash_type }}': '{{ hash_value }}'
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  'sha256': 'b26a1c7fef45d32d473c9047b07618c66c66e2351f1ff6f71136bccf77f6c123'
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - six
 
 test:
@@ -32,6 +30,7 @@ test:
     - pytest >=2.8.5
     - pytest-cov >=1.8.1
     - pytest-pep8 >=1.0.6
+    - python {{ python_min }}
 
 about:
   home: https://github.com/ssanderson/python-interface
